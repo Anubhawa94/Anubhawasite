@@ -39,6 +39,11 @@
             bottom: 0;
             width: 100%;
         }
+        .editable {
+            border: 1px dashed #999;
+            padding: 10px;
+            min-height: 50px;
+        }
     </style>
     <script>
         function showPage(pageId) {
@@ -48,16 +53,23 @@
             }
             document.getElementById(pageId).style.display = 'block';
         }
+
+        function loadContent() {
+            document.querySelectorAll('.editable').forEach(function (element) {
+                let savedContent = localStorage.getItem(element.id);
+                if (savedContent) {
+                    element.innerHTML = savedContent;
+                }
+                element.addEventListener('input', function () {
+                    localStorage.setItem(element.id, element.innerHTML);
+                });
+            });
+        }
+
         window.onload = function() {
             showPage('home');
+            loadContent();
         };
-        
-        function makeEditable(id) {
-            var element = document.getElementById(id);
-            element.contentEditable = true;
-            element.style.border = "1px dashed #000";
-            alert("You can now edit the content. Click outside the text area to save.");
-        }
     </script>
 </head>
 <body>
@@ -77,69 +89,69 @@
         <a onclick="showPage('references')">References</a>
     </div>
 
-    <div class="content" id="home" ondblclick="makeEditable('home')">
+    <div class="content" id="home">
         <h1>Creativity in Early Childhood Curriculum</h1>
-        <p>Welcome to this resource on facilitating creativity within the early childhood curriculum. Here, you will explore various curriculum areas and how they contribute to fostering creativity in young children...</p>
+        <div id="home-content" class="editable" contenteditable="true">Welcome to this resource on facilitating creativity within the early childhood curriculum...</div>
     </div>
 
-    <div class="content" id="art" ondblclick="makeEditable('art')">
+    <div class="content" id="art">
         <h2>Art</h2>
-        <p>This is where I write about art</p>
+        <div id="art-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="drama" ondblclick="makeEditable('drama')">
+    <div class="content" id="drama">
         <h2>Drama and Puppetry</h2>
-        <p>Edit content here...</p>
+        <div id="drama-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="movement" ondblclick="makeEditable('movement')">
+    <div class="content" id="movement">
         <h2>Movement and Music</h2>
-        <p>Edit content here...</p>
+        <div id="movement-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="language" ondblclick="makeEditable('language')">
+    <div class="content" id="language">
         <h2>Language and Literacy</h2>
-        <p>Edit content here...</p>
+        <div id="language-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="science" ondblclick="makeEditable('science')">
+    <div class="content" id="science">
         <h2>Science</h2>
-        <p>Edit content here...</p>
+        <div id="science-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="engineering" ondblclick="makeEditable('engineering')">
+    <div class="content" id="engineering">
         <h2>Engineering</h2>
-        <p>Edit content here...</p>
+        <div id="engineering-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="technologies" ondblclick="makeEditable('technologies')">
+    <div class="content" id="technologies">
         <h2>Technologies</h2>
-        <p>Edit content here...</p>
+        <div id="technologies-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="math" ondblclick="makeEditable('math')">
+    <div class="content" id="math">
         <h2>Mathematics and Numeracy</h2>
-        <p>Edit content here...</p>
+        <div id="math-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="humanities" ondblclick="makeEditable('humanities')">
+    <div class="content" id="humanities">
         <h2>Humanities and Social Sciences</h2>
-        <p>Edit content here...</p>
+        <div id="humanities-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="integrated" ondblclick="makeEditable('integrated')">
+    <div class="content" id="integrated">
         <h2>Integrated Curriculum (STEM, STEAM, STREAM & STEMIE)</h2>
-        <p>Edit content here...</p>
+        <div id="integrated-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="conclusion" ondblclick="makeEditable('conclusion')">
+    <div class="content" id="conclusion">
         <h2>Conclusion</h2>
-        <p>Edit content here...</p>
+        <div id="conclusion-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
-    <div class="content" id="references" ondblclick="makeEditable('references')">
+    <div class="content" id="references">
         <h2>References</h2>
-        <p>Edit content here...</p>
+        <div id="references-content" class="editable" contenteditable="true">Edit content here...</div>
     </div>
 
     <div class="footer">
